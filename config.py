@@ -75,35 +75,29 @@ PUBLIC_FILE_STORE = is_enabled((environ.get('PUBLIC_FILE_STORE', "True")), True)
 
 # File Stream Config
 class Var(object):
-    NO_PORT = bool(environ.get('NO_PORT', False))
-APP_NAME = None
-if 'DYNO' in environ:
-    ON_HEROKU = True
-    APP_NAME = environ.get('APP_NAME')
-else:
-    ON_HEROKU = False
-BIND_ADRESS = str(getenv('WEB_SERVER_BIND_ADDRESS', '0.0.0.0'))
-FQDN = str(getenv('FQDN', BIND_ADRESS)) if not ON_HEROKU or getenv('FQDN') else APP_NAME+'.herokuapp.com'
-URL = "https://linkzzboyz-githubworls.koyeb.app/".format(FQDN) if ON_HEROKU or NO_PORT else \
-    "https://linkzzboyz-githubworls.koyeb.app/".format(FQDN, PORT)
-SLEEP_THRESHOLD = int(environ.get('SLEEP_THRESHOLD', '60'))
-WORKERS = int(environ.get('WORKERS', '4'))
-SESSION_NAME = str(environ.get('SESSION_NAME', 'LazyBot'))
-MULTI_CLIENT = False
-name = str(environ.get('name', 'LazyPrincess'))
-PING_INTERVAL = int(environ.get("PING_INTERVAL", "1200"))  # 20 minutes
-if 'DYNO' in environ:
-    ON_HEROKU = True
-    APP_NAME = str(getenv('APP_NAME'))
-
-else:
-    ON_HEROKU = False
-HAS_SSL=bool(getenv('HAS_SSL',False))
-if HAS_SSL:
-    URL = "https://linkzzboyz-githubworls.koyeb.app/".format(FQDN)
-else:
-    URL = "https://linkzzboyz-githubworls.koyeb.app/".format(FQDN)
-
+   MULTI_CLIENT = False
+    name = str(getenv('name', 'filetolinkbot'))
+    SLEEP_THRESHOLD = int(getenv('SLEEP_THRESHOLD', '60'))
+    WORKERS = int(getenv('WORKERS', '4'))
+    BIN_CHANNEL = int(getenv('BIN_CHANNEL', ''))
+    PORT = int(getenv('PORT', 8080))
+    BIND_ADRESS = str(getenv('WEB_SERVER_BIND_ADDRESS', '0.0.0.0'))
+    PING_INTERVAL = int(environ.get("PING_INTERVAL", "1200"))  # 20 minutes
+    NO_PORT = bool(getenv('NO_PORT', False))
+    APP_NAME = None
+    if 'DYNO' in environ:
+        ON_HEROKU = True
+        APP_NAME = str(getenv('APP_NAME'))
+    
+    else:
+        ON_HEROKU = False
+    FQDN = str(getenv('FQDN', BIND_ADRESS)) if not ON_HEROKU or getenv('FQDN') else APP_NAME+'.herokuapp.com'
+    HAS_SSL=bool(getenv('HAS_SSL',False))
+    if HAS_SSL:
+        URL = "https://linkzzboyz-githubworls.koyeb.app/".format(FQDN)
+    else:
+        URL = "https://linkzzboyz-githubworls.koyeb.app/".format(FQDN)
+        
 # Don't Remove Credit Tg - @VJ_Botz
 # Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
 # Ask Doubt on telegram @KingVJ01
